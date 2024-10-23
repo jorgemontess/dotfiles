@@ -1,0 +1,72 @@
+#!/bin/bash
+set -e
+
+DOTFILES_DIR="$HOME/.dotfiles"
+SSH_DIR="$HOME/.ssh"
+
+if ! [ -x "$(command -v ansible)" ]; then
+    sudo pacman -S ansible --noconfirm
+fi
+
+
+# SSH KEY CONFIGURATION
+
+if ! [[ -f "$SSH_DIR/id_ed25519" ]]; then
+    mkdir -p "$SSH_DIR"
+
+    chmod 700 "$SSH_DIR"
+
+    ssh-keygen -t ed25519 -f "$SSH_DIR/id_ed25519" -N "" -C "jomontes97@hotmail.com"
+    cat "$SSH_DIR/id_ed25519.pub" >> "$SSH_DIR/authorized_keys"
+
+    chmod 600 "$SSH_DIR/authorized_keys"
+fi
+
+#if ! [ -x "$(command -v snap)" ]; then
+#    sudo pacman -S snap --noconfirm
+#fi
+
+if ! [ -x "$(command -v xorg)" ]; then
+    sudo pacman -S xorg --noconfirm
+fi
+
+if ! [ -x "$(command -v git)" ]; then
+    sudo pacman -S git --noconfirm
+fi
+
+#if ! [ -x "$(command -v snapd)" ]; then
+#    sudo pacman -S snapd
+#fi
+
+if ! [ -x "$(command -v nvim)" ]; then
+    sudo pacman -S nvim --noconfirm
+fi
+
+if ! [ -x "$(command -v xclip)" ]; then
+    sudo pacman -S xclip --noconfirm
+fi
+
+if ! [ -x "$(command -v picom)" ]; then
+    sudo pacman -S picom --noconfirm
+fi
+
+if ! [ -x "$(command -v i3-gaps)" ]; then
+    sudo pacman -S i3-gaps --noconfirm
+fi
+
+if ! [ -x "$(command -v npm)" ]; then
+    sudo pacman -S npm --noconfirm
+fi
+
+if ! [ -x "$(command -v ripgrep)" ]; then
+    sudo pacman -S ripgrep --noconfirm
+fi
+
+if ! [ -x "$(command -v feh)" ]; then
+    sudo pacman -S feh --noconfirm
+fi
+
+if ! [ -x "$(command -v curl)" ]; then
+    sudo pacman -S curl --noconfirm
+fi
+
